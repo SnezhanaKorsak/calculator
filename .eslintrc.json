@@ -11,6 +11,7 @@
     "plugin:import/warnings",
     "plugin:import/typescript",
     "airbnb",
+    "plugin:prettier/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -51,13 +52,6 @@
     ],
     "react/jsx-closing-tag-location": 2,
     "react/jsx-closing-bracket-location": "off",
-    "react/jsx-max-props-per-line": [
-      2,
-      {
-        "maximum": 2,
-        "when": "always"
-      }
-    ],
     "react/jsx-filename-extension": [2, { "extensions": [".tsx", ".ts"] }],
     "comma-dangle": [2, "always-multiline"],
     "prefer-const": [
@@ -68,7 +62,8 @@
       }
     ],
     "react/jsx-fragments": [1, "element"],
-    "react/function-component-definition": [2, {"namedComponents": "function-declaration"}]
+    "react/function-component-definition": [2, {"namedComponents": "function-declaration"}],
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
@@ -77,19 +72,5 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  },
-  "overrides": [
-    {
-      "files": ["src/index.js"],
-      "rules": {
-        "react/jsx-filename-extension": "off",
-        "prettier/prettier": [
-          "error",
-          {
-            "singleQuote": true
-          }
-        ]
-      }
-    }
-  ]
+  }
 }

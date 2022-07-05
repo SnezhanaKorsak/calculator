@@ -1,10 +1,20 @@
 import React from 'react';
 
-function App () {
+import { Card, PageLayout } from "layouts";
+
+import Header from "components/Header";
+import CalculatorFC from "components/calculator/CalculatorFC";
+
+
+function App() {
+
   return (
-    <div>
-      Hi, welcome
-    </div>
+    <PageLayout>
+      <Card>
+        <Header/>
+        <CalculatorFC/>
+      </Card>
+    </PageLayout>
   );
 }
 
