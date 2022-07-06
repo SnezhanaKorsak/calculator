@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { StyledHeader } from "components/Header/components";
+import Navigation from 'components/Navigation';
+
+import { StyledHeader } from 'components/Header/components';
 
 function Header() {
-
   return (
     <StyledHeader>
-      Calculator App
+      <div>Calculator App</div>
+      <Navigation />
     </StyledHeader>
   );
 }

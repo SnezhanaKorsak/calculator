@@ -1,12 +1,8 @@
 import React from 'react';
 
-class CalculatorCC extends React.Component {
+class CalculatorCC extends React.PureComponent {
   render() {
-    return (
-      <div>
-        CalculatorCC
-      </div>
-    );
+    return <div>CalculatorCC</div>;
   }
 }
 

@@ -5,7 +5,7 @@ export const StyledHistory = styled.div`
   min-height: 100%;
 
   overflow: auto;
-  padding: 10px;
+  padding: 0 10px;
 
   font-size: 14px;
 `;
