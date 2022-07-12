@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Card, PageLayout } from 'layouts';
 
-import Header from 'components/Header';
+import Header from 'components/header';
 import CalculatorFC from 'components/calculator/CalculatorFC';
 import CalculatorCC from 'components/calculator/CalculatorCC';
 

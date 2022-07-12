@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Navigation from 'components/Navigation';
+import Navigation from 'components/navigation';
 
-import { StyledHeader } from 'components/Header/components';
+import { StyledHeader } from 'components/header/components';
 
 function Header() {
   return (

@@ -12,7 +12,7 @@ export const PageLayout = styled.div`
 export const Card = styled.div`
   height: 450px;
 
-  flex-grow: 0.3;
+  flex-grow: 0.35;
 
   background-color: ${({ theme }) => theme.colors.light};
   box-shadow: ${({ theme }) => theme.boxShadows[0]};

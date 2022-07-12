@@ -4,12 +4,16 @@ import { ButtonProps } from 'components/button/types';
 
 import { ButtonNull, ButtonResult, StyledButton } from 'components/button/components';
 
-function ButtonFC({ className, value }: ButtonProps) {
+function ButtonFC({ className, value, callback }: ButtonProps) {
+  const clickHandler = () => {
+    callback(value);
+  };
+
   return (
     <>
-      {className === '' && <StyledButton>{value}</StyledButton>}
-      {className === 'null' && <ButtonNull>{value}</ButtonNull>}
-      {className === 'result' && <ButtonResult>{value}</ButtonResult>}
+      {className === '' && <StyledButton onClick={clickHandler}>{value}</StyledButton>}
+      {className === 'null' && <ButtonNull onClick={clickHandler}>{value}</ButtonNull>}
+      {className === 'result' && <ButtonResult onClick={clickHandler}>{value}</ButtonResult>}
     </>
   );
 }

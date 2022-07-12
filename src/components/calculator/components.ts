@@ -12,8 +12,6 @@ export const StyledCalculator = styled.div`
     width: 100%;
     height: 100%;
 
-    flex-grow: 3;
-
     margin-right: 10px;
   }
 `;

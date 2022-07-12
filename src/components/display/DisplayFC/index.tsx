@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { StyledDisplay } from "components/display/components";
+import { DisplayProps } from 'components/display/types';
 
-function DisplayFC() {
+import { StyledDisplay } from 'components/display/components';
 
+function DisplayFC({ output, displayHistory }: DisplayProps) {
   return (
     <StyledDisplay>
-      <div className= 'display-history'>10+25</div>
-      <div>0</div>
+      <div className="display-history">{displayHistory}</div>
+      <div>{output}</div>
     </StyledDisplay>
   );
 }

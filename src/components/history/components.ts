@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHistory = styled.div`
-  width: 40%;
+  width: 100%;
   min-height: 100%;
 
   overflow: auto;

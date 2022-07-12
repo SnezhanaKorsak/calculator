@@ -16,6 +16,8 @@ export const StyledDisplay = styled.div`
   font-size: 20px;
 
   .display-history {
+    height: 15px;
+
     font-size: 14px;
     margin: 5px;
   }

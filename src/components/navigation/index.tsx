@@ -1,9 +1,9 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { NavLink, StyledNavigation } from 'components/navigation/components';
 
 import { HOME_CC_PAGE_ROUTE, HOME_FC_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
-
-import { NavLink, StyledNavigation } from 'components/Navigation/components';
-import { useLocation } from 'react-router-dom';
 
 function Navigation() {
   const location = useLocation();
