@@ -10,9 +10,10 @@ export const PageLayout = styled.div`
 `;
 
 export const Card = styled.div`
+  // width: 65%;
   height: 450px;
 
-  flex-grow: 0.35;
+  flex-grow: 0.2;
 
   background-color: ${({ theme }) => theme.colors.light};
   box-shadow: ${({ theme }) => theme.boxShadows[0]};

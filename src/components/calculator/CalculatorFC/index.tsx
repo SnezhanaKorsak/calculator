@@ -9,6 +9,7 @@ import { Calculator } from 'utils/Calculator';
 import { calculatingBrackets } from 'utils/calculatingBrackets';
 
 import { StyledCalculator } from 'components/calculator/components';
+import { useAppSelector } from 'utils/hooks';
 
 const calculator = new Calculator();
 
@@ -17,7 +18,11 @@ const operators = '+-x/%=';
 const signs = ['C', 'CE', '±', '←', '(', ')'];
 
 function CalculatorFC() {
+  const initialHistoryList = useAppSelector((state) => state.history.historyList);
+
   const [displayHistory, setDisplayHistory] = useState('');
+  const [historyList, setHistoryList] = useState(initialHistoryList);
+  const [visible, setVisible] = useState(true);
 
   const [previous, setPrevious] = useState('');
   const [current, setCurrent] = useState('');
@@ -34,11 +39,7 @@ function CalculatorFC() {
     } else {
       setOutput(current || previous || '0');
     }
-
-    if (total) {
-      setDisplayHistory('');
-    }
-  }, [current, previous, sign, total]);
+  }, [current, previous, sign]);
 
   useEffect(() => {
     if (displayHistory.includes(')')) {
@@ -47,7 +48,15 @@ function CalculatorFC() {
         setPrevious(calculator.execute(storage.operator, storage.previous, result).toString());
       }
     }
-  }, [displayHistory]);
+    if (total) {
+      if (displayHistory) {
+        setHistoryList((state) => [...state, { id: state.length, value: displayHistory }]);
+      }
+      localStorage.setItem('history', JSON.stringify(historyList));
+
+      setDisplayHistory('');
+    }
+  }, [displayHistory, total]);
 
   const numberClickHandler = (value: string) => {
     if (current.includes('.') && value === '.') return;
@@ -103,6 +112,10 @@ function CalculatorFC() {
     setStorage({ previous, operator });
   };
 
+  const rightBracket = () => {
+    setCurrent('');
+  };
+
   const signClickHandler = (value: string) => {
     switch (value) {
       case 'C':
@@ -119,6 +132,9 @@ function CalculatorFC() {
 
       case '(':
         return leftBracket();
+
+      case ')':
+        return rightBracket();
 
       default:
         return '';
@@ -143,17 +159,23 @@ function CalculatorFC() {
 
     if (operators.includes(value) || value === '(' || value === ')') {
       const number = total ? previous : current;
-      setDisplayHistory((state) => `${state} ${value !== '=' ? number : ''} ${value === '=' ? '' : value}`);
+
+      setDisplayHistory((state) => `${state} ${number} ${value === '=' ? '' : value}`);
     }
   };
+
+  const toggleHistory = () => {
+    setVisible(!visible);
+  };
+
   return (
     <StyledCalculator>
       <div className="main-block">
         <DisplayFC output={output} displayHistory={displayHistory} />
         <KeyPadFC callback={buttonClickHandler} />
       </div>
-      <ControlPanelFC />
-      <HistoryFC />
+      <HistoryFC historyList={historyList} visible={visible} />
+      <ControlPanelFC visible={visible} toggleHistory={toggleHistory} />
     </StyledCalculator>
   );
 }

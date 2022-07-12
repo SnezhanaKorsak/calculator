@@ -1,13 +1,16 @@
 import React from 'react';
 
+import { HistoryProps } from 'components/history/types';
+
 import { StyledHistory, Title } from 'components/history/components';
 
-function HistoryFC() {
+function HistoryFC({ historyList, visible }: HistoryProps) {
   return (
-    <StyledHistory>
+    <StyledHistory visible={visible}>
       <Title>HistoryFC</Title>
-      <div>100 * 2</div>
-      <div>200 / 2</div>
+      {historyList.map(({ id, value }) => (
+        <div key={id}>{value}</div>
+      ))}
     </StyledHistory>
   );
 }

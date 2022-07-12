@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const StyledHistory = styled.div`
+export const StyledHistory = styled.div<{ visible: boolean }>`
   width: 100%;
-  min-height: 100%;
+
+  height: 100%;
+
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
 
   overflow: auto;
+  margin-right: 15px;
   padding: 0 10px;
 
   font-size: 14px;

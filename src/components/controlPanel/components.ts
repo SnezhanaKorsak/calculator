@@ -1,22 +1,26 @@
 import styled from 'styled-components';
 
 export const StyledControlPanel = styled.div`
-  width: 16px;
   height: 100%;
 
   box-shadow: ${({ theme }) => theme.boxShadows[0]};
 
   border-radius: 5px;
+`;
 
-  color: ${({ theme }) => theme.colors.blue};
+export const ButtonStyle = styled.button`
+  width: 16px;
+  height: 30px;
+
+  background: transparent;
+  border: none;
+  outline: none;
 
   text-align: center;
   font-size: 28px;
   line-height: 366px;
 
-  &:hover {
-    cursor: pointer;
-  }
-`;
+  color: ${({ theme }) => theme.colors.blue};
 
-// border: 6px double;
+  cursor: pointer;
+`;

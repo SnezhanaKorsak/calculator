@@ -1,11 +1,16 @@
 import React from 'react';
 
-import { StyledControlPanel } from 'components/controlPanel/components';
+import { ButtonStyle, StyledControlPanel } from 'components/controlPanel/components';
+import { ControlPanelProps } from 'components/controlPanel/types';
 
-function ControlPanelFC() {
-  return <StyledControlPanel>▶</StyledControlPanel>;
+function ControlPanelFC({ visible, toggleHistory }: ControlPanelProps) {
+  return (
+    <StyledControlPanel>
+      <ButtonStyle onClick={toggleHistory}>{visible ? '◀' : '▶'}</ButtonStyle>
+    </StyledControlPanel>
+  );
 }
 
 export default ControlPanelFC;
 
-// ◀
+// ▶ ◀

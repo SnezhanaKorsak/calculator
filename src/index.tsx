@@ -8,13 +8,17 @@ import App from 'App';
 
 import theme from 'theme';
 import GlobalStyles from 'globalStyles';
+import { store } from 'store';
+import Provider from 'react-redux/es/components/Provider';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <App />
-      <GlobalStyles />
-    </BrowserRouter>
-  </ThemeProvider>,
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App />
+        <GlobalStyles />
+      </BrowserRouter>
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root'),
 );
