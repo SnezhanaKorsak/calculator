@@ -12,13 +12,13 @@ import { store } from 'store';
 import Provider from 'react-redux/es/components/Provider';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <Provider store={store}>
         <App />
-        <GlobalStyles />
-      </BrowserRouter>
-    </ThemeProvider>
-  </Provider>,
+      </Provider>
+      <GlobalStyles />
+    </BrowserRouter>
+  </ThemeProvider>,
   document.getElementById('root'),
 );

@@ -1,6 +1,7 @@
 const font = 'Orbitron, sans-serif';
 
 // Color palette
+const white = '#ffffff';
 const light = '#d9e4f1';
 const blue = '#759ac6';
 const lightBlue = '#fdfeff';
@@ -19,6 +20,7 @@ export default {
   boxShadows,
   gradientColor,
   colors: {
+    white,
     light,
     blue,
     lightBlue,

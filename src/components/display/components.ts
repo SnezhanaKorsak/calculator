@@ -22,5 +22,3 @@ export const StyledDisplay = styled.div`
     margin: 5px;
   }
 `;
-
-// line-height: 30px;

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import DisplayFC from 'components/display/DisplayFC';
 import KeyPadFC from 'components/keyPad/KeyPadFC';
-import ControlPanelFC from 'components/controlPanel/ControlPanelFC/ControlPanelFC';
+import Index from 'components/controlPanel/ControlPanelFC';
 import HistoryFC from 'components/history/HistoryFC';
 
 import { Calculator } from 'utils/Calculator';
 import { calculatingBrackets } from 'utils/calculatingBrackets';
 
-import { StyledCalculator } from 'components/calculator/components';
+import { StyledCalculator } from 'containers/calculator/components';
 import { useAppSelector } from 'utils/hooks';
 
 const calculator = new Calculator();
@@ -175,7 +175,7 @@ function CalculatorFC() {
         <KeyPadFC callback={buttonClickHandler} />
       </div>
       <HistoryFC historyList={historyList} visible={visible} />
-      <ControlPanelFC visible={visible} toggleHistory={toggleHistory} />
+      <Index visible={visible} toggleHistory={toggleHistory} />
     </StyledCalculator>
   );
 }

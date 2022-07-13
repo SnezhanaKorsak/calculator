@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navigation from 'components/navigation';
 
-import { StyledHeader } from 'components/header/components';
+import { StyledHeader } from 'components/Header/components';
 
 function Header() {
   return (

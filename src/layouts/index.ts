@@ -10,7 +10,6 @@ export const PageLayout = styled.div`
 `;
 
 export const Card = styled.div`
-  // width: 65%;
   height: 450px;
 
   flex-grow: 0.2;

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { HistoryItem } from 'components/history/types';
 
@@ -14,13 +14,13 @@ export const historySlice = createSlice({
   name: 'history',
   initialState,
   reducers: {
-    setHistoryToLC: (state, action: PayloadAction<HistoryItem>) => {
-      localStorage.setItem('history', JSON.stringify(action.payload.value));
+    clearAllHistory: (state) => {
+      state.historyList = [];
+      localStorage.clear();
     },
   },
 });
 
 export const historyReducer = historySlice.reducer;
 
-// actions
-export const { setHistoryToLC } = historySlice.actions;
+export const { clearAllHistory } = historySlice.actions;

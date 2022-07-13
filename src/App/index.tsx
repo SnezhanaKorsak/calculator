@@ -1,24 +1,29 @@
 import React from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { Card, PageLayout } from 'layouts';
 
-import Header from 'components/header';
-import CalculatorFC from 'components/calculator/CalculatorFC';
-import CalculatorCC from 'components/calculator/CalculatorCC';
+import Header from 'components/Header';
+import CalculatorFC from 'containers/calculator/CalculatorFC';
+import CalculatorCC from 'containers/calculator/CalculatorCC';
+import ErrorBoundary from 'components/ErrorBoundary';
 
-import { HOME_CC_PAGE_ROUTE } from 'constants/router';
+import { HOME_CC_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
+import SettingsFC from 'containers/settings/SettingsFC';
 
 function App() {
   return (
     <PageLayout>
       <Card>
-        <Header />
-        <Routes>
-          <Route path="/" element={<CalculatorFC />} />
-          <Route path={HOME_CC_PAGE_ROUTE} element={<CalculatorCC />} />
-        </Routes>
+        <ErrorBoundary>
+          <Header />
+          <Routes>
+            <Route path="/" element={<CalculatorFC />} />
+            <Route path={HOME_CC_PAGE_ROUTE} element={<CalculatorCC />} />
+            <Route path={SETTINGS_PAGE_ROUTE} element={<SettingsFC />} />
+          </Routes>
+        </ErrorBoundary>
       </Card>
     </PageLayout>
   );

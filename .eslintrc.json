@@ -49,6 +49,12 @@
         "tsx": "never"
       }
     ],
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": [
+        "state"
+      ]
+    }],
     "react/jsx-closing-tag-location": 2,
     "react/jsx-closing-bracket-location": "off",
     "react/jsx-filename-extension": [2, { "extensions": [".tsx", ".ts"] }],
