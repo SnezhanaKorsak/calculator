@@ -4,18 +4,19 @@ export const StyledButton = styled.button`
   width: 50px;
   height: 50px;
 
-  background: ${({ theme }) => theme.gradientColor};
+  background: ${({ theme }) => theme.background.gradient};
   box-shadow: ${({ theme }) => theme.boxShadows[1]};
 
   border: 1px solid;
-  border-color: ${({ theme }) => theme.colors.borderColor};
+  border-color: ${({ theme }) => theme.borderColor};
   outline: none;
   border-radius: 10px;
 
   font-size: 20px;
+  color: ${({ theme }) => theme.colors.primary};
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.background.accent};
   }
 `;
 
@@ -31,5 +32,5 @@ export const ButtonResult = styled(StyledButton)`
   grid-column: 5 / auto;
   grid-row: 4/6;
 
-  background: #759ac6;
+  background: ${({ theme }) => theme.background.secondary};
 `;

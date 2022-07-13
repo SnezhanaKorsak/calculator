@@ -1,31 +1,47 @@
 import React from 'react';
-
 import { Route, Routes } from 'react-router-dom';
-
-import { Card, PageLayout } from 'layouts';
+import { ThemeProvider } from 'styled-components';
 
 import Header from 'components/Header';
 import CalculatorFC from 'containers/calculator/CalculatorFC';
 import CalculatorCC from 'containers/calculator/CalculatorCC';
 import ErrorBoundary from 'components/ErrorBoundary';
-
-import { HOME_CC_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
 import SettingsFC from 'containers/settings/SettingsFC';
 
+import { Card, PageLayout } from 'layouts';
+import { coloredTheme, darkTheme, lightTheme } from 'theme';
+
+import { useAppSelector } from 'utils/hooks';
+
+import { HOME_CC_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
+
 function App() {
+  const { currentTheme } = useAppSelector((state) => state.theme);
+
+  let theme = coloredTheme;
+
+  if (currentTheme === 'light') {
+    theme = lightTheme;
+  }
+  if (currentTheme === 'dark') {
+    theme = darkTheme;
+  }
+
   return (
-    <PageLayout>
-      <Card>
-        <ErrorBoundary>
-          <Header />
-          <Routes>
-            <Route path="/" element={<CalculatorFC />} />
-            <Route path={HOME_CC_PAGE_ROUTE} element={<CalculatorCC />} />
-            <Route path={SETTINGS_PAGE_ROUTE} element={<SettingsFC />} />
-          </Routes>
-        </ErrorBoundary>
-      </Card>
-    </PageLayout>
+    <ThemeProvider theme={theme}>
+      <PageLayout>
+        <Card>
+          <ErrorBoundary>
+            <Header />
+            <Routes>
+              <Route path="/" element={<CalculatorFC />} />
+              <Route path={HOME_CC_PAGE_ROUTE} element={<CalculatorCC />} />
+              <Route path={SETTINGS_PAGE_ROUTE} element={<SettingsFC />} />
+            </Routes>
+          </ErrorBoundary>
+        </Card>
+      </PageLayout>
+    </ThemeProvider>
   );
 }
 

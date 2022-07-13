@@ -1,3 +1,3 @@
 export type KeyPadProps = {
-  callback: (value: string) => void,
+  callback: (value: string) => void;
 };

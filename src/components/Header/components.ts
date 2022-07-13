@@ -7,7 +7,7 @@ export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
 
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme }) => theme.background.secondary};
 
   padding: 10px;
 

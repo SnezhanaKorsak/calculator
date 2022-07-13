@@ -3,7 +3,7 @@ import React from 'react';
 import { ButtonStyle, StyledControlPanel } from 'components/controlPanel/components';
 import { ControlPanelProps } from 'components/controlPanel/types';
 
-function Index({ visible, toggleHistory }: ControlPanelProps) {
+function ControlPanelFC({ visible, toggleHistory }: ControlPanelProps) {
   return (
     <StyledControlPanel>
       <ButtonStyle onClick={toggleHistory}>{visible ? '◀' : '▶'}</ButtonStyle>
@@ -11,6 +11,4 @@ function Index({ visible, toggleHistory }: ControlPanelProps) {
   );
 }
 
-export default Index;
-
-// ▶ ◀
+export default ControlPanelFC;

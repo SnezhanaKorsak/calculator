@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import DisplayFC from 'components/display/DisplayFC';
 import KeyPadFC from 'components/keyPad/KeyPadFC';
-import Index from 'components/controlPanel/ControlPanelFC';
+import ControlPanelFC from 'components/controlPanel/ControlPanelFC';
 import HistoryFC from 'components/history/HistoryFC';
 
 import { Calculator } from 'utils/Calculator';
 import { calculatingBrackets } from 'utils/calculatingBrackets';
 
 import { StyledCalculator } from 'containers/calculator/components';
-import { useAppSelector } from 'utils/hooks';
+import { useAppDispatch, useAppSelector } from 'utils/hooks';
+import { setHistory } from 'reducers/historyReducer';
 
 const calculator = new Calculator();
 
@@ -18,10 +19,11 @@ const operators = '+-x/%=';
 const signs = ['C', 'CE', '±', '←', '(', ')'];
 
 function CalculatorFC() {
-  const initialHistoryList = useAppSelector((state) => state.history.historyList);
+  const dispatch = useAppDispatch();
+  const historyList = useAppSelector((state) => state.history.historyList);
 
   const [displayHistory, setDisplayHistory] = useState('');
-  const [historyList, setHistoryList] = useState(initialHistoryList);
+  // const [historyList, setHistoryList] = useState(initialHistoryList);
   const [visible, setVisible] = useState(true);
 
   const [previous, setPrevious] = useState('');
@@ -50,7 +52,8 @@ function CalculatorFC() {
     }
     if (total) {
       if (displayHistory) {
-        setHistoryList((state) => [...state, { id: state.length, value: displayHistory }]);
+        dispatch(setHistory({ id: historyList.length, value: displayHistory }));
+        // setHistoryList((state) => [...state, { id: state.length, value: displayHistory }]);
       }
       localStorage.setItem('history', JSON.stringify(historyList));
 
@@ -71,7 +74,8 @@ function CalculatorFC() {
   };
 
   const operatorClickHandler = (value: string) => {
-    setOperator((state) => (state !== value ? value : state));
+    // setOperator((state) => (state !== value ? value : state));
+    setOperator(value);
 
     if (current === '') return;
 
@@ -153,7 +157,6 @@ function CalculatorFC() {
     }
 
     if (signs.includes(value)) {
-      setTotal(value === '=');
       signClickHandler(value);
     }
 
@@ -175,7 +178,7 @@ function CalculatorFC() {
         <KeyPadFC callback={buttonClickHandler} />
       </div>
       <HistoryFC historyList={historyList} visible={visible} />
-      <Index visible={visible} toggleHistory={toggleHistory} />
+      <ControlPanelFC visible={visible} toggleHistory={toggleHistory} />
     </StyledCalculator>
   );
 }

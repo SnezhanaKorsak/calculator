@@ -4,7 +4,7 @@ export const StyledErrorMessage = styled.div`
   width: 650px;
   height: 100px;
 
-  background: ${({ theme }) => theme.colors.white};
+  background: white;
 
   border: 6px double red;
   border-radius: 5px;
