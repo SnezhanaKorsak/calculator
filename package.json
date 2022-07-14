@@ -23,8 +23,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test:cypress": "start-server-and-test start http://localhost:3000 sypress",
-    "cypress": "cypress open",
+    "cypress": "start-server-and-test start http://localhost:3000 cypress:open",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:test": "start-server-and-test start http://localhost:3000 cypress:run",
     "eject": "react-scripts eject"
   },
   "browserslist": {

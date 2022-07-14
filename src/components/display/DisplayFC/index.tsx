@@ -7,8 +7,8 @@ import { StyledDisplay, StyledDisplayHistory, StyledDisplayResult } from 'compon
 function DisplayFC({ output, displayHistory }: DisplayProps) {
   return (
     <StyledDisplay>
-      <StyledDisplayHistory className="display-history">{displayHistory}</StyledDisplayHistory>
-      <StyledDisplayResult type="text" value={output} />
+      <StyledDisplayHistory id="display-history">{displayHistory}</StyledDisplayHistory>
+      <StyledDisplayResult type="text" value={output} readOnly />
     </StyledDisplay>
   );
 }
