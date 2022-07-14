@@ -13,12 +13,21 @@ export const StyledDisplay = styled.div`
   padding: 3px 10px;
 
   text-align: right;
+`;
+
+export const StyledDisplayHistory = styled.div`
+  height: 15px;
+  font-size: 14px;
+  margin: 5px;
+`;
+
+export const StyledDisplayResult = styled.input`
+  background: transparent;
+
+  border: none;
+  outline: none;
+
   font-size: 20px;
-
-  .display-history {
-    height: 15px;
-
-    font-size: 14px;
-    margin: 5px;
-  }
+  color: ${({ theme }) => theme.colors.primary};
+  text-align: right;
 `;

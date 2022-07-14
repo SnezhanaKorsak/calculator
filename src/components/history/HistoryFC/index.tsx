@@ -7,7 +7,7 @@ import { StyledHistory, Title } from 'components/history/components';
 function HistoryFC({ historyList, visible }: HistoryProps) {
   return (
     <StyledHistory visible={visible}>
-      <Title>HistoryFC</Title>
+      <Title>History</Title>
       {historyList.map(({ id, value }) => (
         <div key={id}>{value}</div>
       ))}

@@ -2,13 +2,13 @@ import React from 'react';
 
 import { DisplayProps } from 'components/display/types';
 
-import { StyledDisplay } from 'components/display/components';
+import { StyledDisplay, StyledDisplayHistory, StyledDisplayResult } from 'components/display/components';
 
 function DisplayFC({ output, displayHistory }: DisplayProps) {
   return (
     <StyledDisplay>
-      <div className="display-history">{displayHistory}</div>
-      <div>{output}</div>
+      <StyledDisplayHistory className="display-history">{displayHistory}</StyledDisplayHistory>
+      <StyledDisplayResult type="text" value={output} />
     </StyledDisplay>
   );
 }

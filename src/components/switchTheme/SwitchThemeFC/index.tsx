@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import { useAppDispatch, useAppSelector } from 'utils/hooks';
 
+import { useAppDispatch, useAppSelector } from 'utils/hooks';
 import { changeTheme } from 'reducers/themeReducer';
 
 import { StyledSelect, SubTitle } from 'components/switchTheme/components';

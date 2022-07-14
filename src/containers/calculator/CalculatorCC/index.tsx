@@ -32,7 +32,6 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
       output: '0',
       operator: '',
       sign: '',
-      storage: { previous: '', operator: '' },
       total: false,
       displayHistory: '',
       visible: true,
@@ -40,7 +39,7 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
   }
 
   componentDidUpdate() {
-    const { current, previous, sign, displayHistory, storage, total } = this.state;
+    const { current, previous, sign, displayHistory, total } = this.state;
     const { historyList, setHistory: setHistoryLS } = this.props;
 
     if (sign === 'CE' || sign === '←') {
@@ -53,7 +52,7 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
       const result = calculatingBrackets(displayHistory);
       if (result) {
         this.setState({
-          previous: calculator.execute(storage.operator, storage.previous, result).toString(),
+          previous: result.toString(),
         });
       }
     }
@@ -103,8 +102,6 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
       this.setState({ current: current.slice(0, current.length - 1), sign: '<' });
     };
 
-    const leftBracket = () => this.setState({ storage: { previous, operator } });
-
     const rightBracket = () => this.setState({ current: '' });
 
     const signClickHandler = (value: string) => {
@@ -120,9 +117,6 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
 
         case '±':
           return invertHandler();
-
-        case '(':
-          return leftBracket();
 
         case ')':
           return rightBracket();
@@ -148,7 +142,9 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
 
       if (operators.includes(value) || value === '(' || value === ')') {
         const number = total ? previous : current;
-        this.setState((state) => ({ displayHistory: `${state} ${number} ${value === '=' ? '' : value}` }));
+        this.setState((state) => ({
+          displayHistory: `${state.displayHistory} ${number} ${value === '=' ? '' : value}`,
+        }));
       }
     };
 

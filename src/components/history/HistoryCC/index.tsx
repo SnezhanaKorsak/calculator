@@ -10,7 +10,7 @@ class HistoryCC extends React.PureComponent<HistoryProps> {
 
     return (
       <StyledHistory visible={visible}>
-        <Title>HistoryCC</Title>
+        <Title>History</Title>
         {historyList.map(({ id, value }) => (
           <div key={id}>{value}</div>
         ))}

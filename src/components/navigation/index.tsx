@@ -3,7 +3,12 @@ import { useLocation } from 'react-router-dom';
 
 import { NavLink, StyledNavigation } from 'components/navigation/components';
 
-import { HOME_CC_PAGE_ROUTE, HOME_FC_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from 'constants/router';
+import {
+  HOME_CC_PAGE_ROUTE,
+  HOME_FC_PAGE_ROUTE,
+  SETTINGS_CC_PAGE_ROUTE,
+  SETTINGS_FC_PAGE_ROUTE,
+} from 'constants/router';
 
 function Navigation() {
   const location = useLocation();
@@ -12,13 +17,16 @@ function Navigation() {
   return (
     <StyledNavigation>
       <NavLink to={HOME_FC_PAGE_ROUTE} isActive={path === HOME_FC_PAGE_ROUTE}>
-        Home_FC
+        HomeFC
       </NavLink>
       <NavLink to={HOME_CC_PAGE_ROUTE} isActive={path === HOME_CC_PAGE_ROUTE}>
-        Home_CC
+        HomeCC
       </NavLink>
-      <NavLink to={SETTINGS_PAGE_ROUTE} isActive={path === SETTINGS_PAGE_ROUTE}>
-        Settings
+      <NavLink to={SETTINGS_FC_PAGE_ROUTE} isActive={path === SETTINGS_FC_PAGE_ROUTE}>
+        SettingsFC
+      </NavLink>
+      <NavLink to={SETTINGS_CC_PAGE_ROUTE} isActive={path === SETTINGS_CC_PAGE_ROUTE}>
+        SettingsCC
       </NavLink>
     </StyledNavigation>
   );

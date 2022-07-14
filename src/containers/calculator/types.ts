@@ -6,7 +6,6 @@ export type CalculatorState = {
   output: string;
   operator: string;
   sign: string;
-  storage: { previous: string; operator: string };
   total: boolean;
   displayHistory: string;
   visible: boolean;

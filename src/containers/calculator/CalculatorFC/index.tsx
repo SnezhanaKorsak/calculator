@@ -23,7 +23,6 @@ function CalculatorFC() {
   const historyList = useAppSelector((state) => state.history.historyList);
 
   const [displayHistory, setDisplayHistory] = useState('');
-  // const [historyList, setHistoryList] = useState(initialHistoryList);
   const [visible, setVisible] = useState(true);
 
   const [previous, setPrevious] = useState('');
@@ -31,7 +30,6 @@ function CalculatorFC() {
   const [output, setOutput] = useState('0');
   const [operator, setOperator] = useState('');
   const [sign, setSign] = useState('');
-  const [storage, setStorage] = useState({ previous: '', operator: '' });
 
   const [total, setTotal] = useState(false);
 
@@ -47,13 +45,12 @@ function CalculatorFC() {
     if (displayHistory.includes(')')) {
       const result = calculatingBrackets(displayHistory);
       if (result) {
-        setPrevious(calculator.execute(storage.operator, storage.previous, result).toString());
+        setPrevious(result.toString());
       }
     }
     if (total) {
       if (displayHistory) {
         dispatch(setHistory({ id: historyList.length, value: displayHistory }));
-        // setHistoryList((state) => [...state, { id: state.length, value: displayHistory }]);
       }
       localStorage.setItem('history', JSON.stringify(historyList));
 
@@ -74,7 +71,6 @@ function CalculatorFC() {
   };
 
   const operatorClickHandler = (value: string) => {
-    // setOperator((state) => (state !== value ? value : state));
     setOperator(value);
 
     if (current === '') return;
@@ -112,10 +108,6 @@ function CalculatorFC() {
     setCurrent(current.slice(0, current.length - 1));
   };
 
-  const leftBracket = () => {
-    setStorage({ previous, operator });
-  };
-
   const rightBracket = () => {
     setCurrent('');
   };
@@ -133,9 +125,6 @@ function CalculatorFC() {
 
       case '±':
         return invertHandler();
-
-      case '(':
-        return leftBracket();
 
       case ')':
         return rightBracket();
