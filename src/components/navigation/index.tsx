@@ -15,7 +15,7 @@ function Navigation() {
   const path = location.pathname;
 
   return (
-    <StyledNavigation>
+    <StyledNavigation id="navigation">
       <NavLink to={HOME_FC_PAGE_ROUTE} isActive={path === HOME_FC_PAGE_ROUTE}>
         HomeFC
       </NavLink>
