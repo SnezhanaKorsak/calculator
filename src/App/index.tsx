@@ -9,12 +9,11 @@ import ErrorBoundary from 'components/ErrorBoundary';
 import SettingsFC from 'containers/settings/SettingsFC';
 import SettingsCC from 'containers/settings/SettingsCC';
 
-import { Card, PageLayout } from 'layouts';
+import { useAppSelector } from 'utils/hooks';
+import { HOME_CC_PAGE_ROUTE, SETTINGS_CC_PAGE_ROUTE, SETTINGS_FC_PAGE_ROUTE } from 'constants/router';
 import { coloredTheme, darkTheme, lightTheme } from 'theme';
 
-import { useAppSelector } from 'utils/hooks';
-
-import { HOME_CC_PAGE_ROUTE, SETTINGS_CC_PAGE_ROUTE, SETTINGS_FC_PAGE_ROUTE } from 'constants/router';
+import { Card, PageLayout } from 'layouts';
 
 function App() {
   const { currentTheme } = useAppSelector((state) => state.theme);

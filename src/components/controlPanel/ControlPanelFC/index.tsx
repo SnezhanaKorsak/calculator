@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { ButtonStyle, StyledControlPanel } from 'components/controlPanel/components';
 import { ControlPanelProps } from 'components/controlPanel/types';
+
+import { ButtonStyle, StyledControlPanel } from 'components/controlPanel/components';
 
 function ControlPanelFC({ visible, toggleHistory }: ControlPanelProps) {
   return (

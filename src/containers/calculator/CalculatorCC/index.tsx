@@ -82,7 +82,7 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
 
       if (current === '') return;
 
-      if (previous !== '') {
+      if (previous !== '' && !displayHistory.includes('(')) {
         const result = calculator.execute(operator, previous, current).toString();
         this.setState({ previous: result, current: '' });
       } else {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DisplayProps } from 'components/display/types';
 
-import { StyledDisplay } from 'components/display/components';
+import { StyledDisplay, StyledDisplayHistory, StyledDisplayResult } from 'components/display/components';
 
 class DisplayCC extends React.PureComponent<DisplayProps> {
   render(): React.ReactNode {
@@ -10,8 +10,8 @@ class DisplayCC extends React.PureComponent<DisplayProps> {
 
     return (
       <StyledDisplay>
-        <div className="display-history">{displayHistory}</div>
-        <div>{output}</div>
+        <StyledDisplayHistory id="display-history">{displayHistory}</StyledDisplayHistory>
+        <StyledDisplayResult type="text" value={output} readOnly />
       </StyledDisplay>
     );
   }

@@ -75,7 +75,7 @@ function CalculatorFC() {
 
     if (current === '') return;
 
-    if (previous !== '') {
+    if (previous !== '' && !displayHistory.includes('(')) {
       const result = calculator.execute(operator, previous, current).toString();
 
       setPrevious(result);

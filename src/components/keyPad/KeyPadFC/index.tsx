@@ -4,8 +4,8 @@ import ButtonFC from 'components/button/ButtonFC';
 
 import { buttons } from 'constants/buttons';
 
-import { StyledKeyPad } from 'components/keyPad/components';
 import { KeyPadProps } from 'components/keyPad/types';
+import { StyledKeyPad } from 'components/keyPad/components';
 
 function KeyPadFC({ callback }: KeyPadProps) {
   return (
