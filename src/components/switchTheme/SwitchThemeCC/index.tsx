@@ -6,7 +6,7 @@ import { changeTheme } from 'reducers/themeReducer';
 
 import { MapStateProps, SwitchThemeProps } from 'components/switchTheme/types';
 
-import { StyledSelect, SubTitle } from 'components/switchTheme/components';
+import { StyledSelect, SubTitle } from 'components/switchTheme/styled';
 
 class SwitchThemeCC extends React.PureComponent<SwitchThemeProps> {
   render(): React.ReactNode {

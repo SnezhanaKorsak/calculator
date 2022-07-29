@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DisplayProps } from 'components/display/types';
 
-import { StyledDisplay, StyledDisplayHistory, StyledDisplayResult } from 'components/display/components';
+import { StyledDisplay, StyledDisplayHistory, StyledDisplayResult } from 'components/display/styled';
 
 class DisplayCC extends React.PureComponent<DisplayProps> {
   render(): React.ReactNode {

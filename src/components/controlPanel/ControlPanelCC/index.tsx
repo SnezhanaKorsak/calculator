@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ControlPanelProps } from 'components/controlPanel/types';
 
-import { ButtonStyle, StyledControlPanel } from 'components/controlPanel/components';
+import { ButtonStyle, StyledControlPanel } from 'components/controlPanel/styled';
 
 class ControlPanelCC extends React.PureComponent<ControlPanelProps> {
   render(): React.ReactNode {

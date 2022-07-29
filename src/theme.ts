@@ -12,6 +12,7 @@ const darkGray = '#272739';
 const dark = '#121212';
 const aquamarine = '#64ffda';
 const borderColor = '#a8aaac';
+const error = '#e25837';
 
 const boxShadows = [
   '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
@@ -31,7 +32,11 @@ export default {
     darkBlue,
     borderColor,
     aquamarine,
+    error,
   },
+  spaces: [0, 5, 10, 15, 25, 30, 50, 60, 90, 100, 250, 306, 350, 366, 450, 650, 550],
+  fontSizes: [12, 14, 16, 20, 24, 28, 32, 40],
+  borderRadius: [5, 10],
 };
 
 export const coloredTheme = {

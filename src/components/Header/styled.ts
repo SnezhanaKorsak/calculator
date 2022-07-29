@@ -1,15 +1,12 @@
 import styled from 'styled-components';
+import commonTheme from 'theme';
 
 export const StyledHeader = styled.div`
-  width: 100%;
-  height: 50px;
-
+  width: ${commonTheme.spaces[9]}%;
+  height: ${commonTheme.spaces[6]}px;
   display: flex;
   justify-content: space-between;
-
   background-color: ${({ theme }) => theme.background.secondary};
-
-  padding: 10px;
-
-  line-height: 30px;
+  padding: ${commonTheme.spaces[2]}px;
+  line-height: ${commonTheme.spaces[5]}px;
 `;

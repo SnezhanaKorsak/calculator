@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { NavLink, StyledNavigation } from 'components/navigation/components';
+import { NavLink, StyledNavigation } from 'components/navigation/styled';
 
 import {
   HOME_CC_PAGE_ROUTE,
@@ -10,7 +10,7 @@ import {
   SETTINGS_FC_PAGE_ROUTE,
 } from 'constants/router';
 
-function Navigation() {
+const Navigation = () => {
   const location = useLocation();
   const path = location.pathname;
 
@@ -30,6 +30,6 @@ function Navigation() {
       </NavLink>
     </StyledNavigation>
   );
-}
+};
 
 export default Navigation;

@@ -9,142 +9,114 @@ import ControlPanelCC from 'components/controlPanel/ControlPanelCC';
 import { AppRootState } from 'store';
 import { setHistory } from 'reducers/historyReducer';
 
-import { Calculator } from 'utils/Calculator';
-import { calculatingBrackets } from 'utils/calculatingBrackets';
+import {
+  CalculatorCCProps,
+  CalculatorState,
+  MapStateProps,
+  SignClickHandler,
+} from 'containers/calculator/types';
 
-import { CalculatorCCProps, CalculatorState, MapStateProps } from 'containers/calculator/types';
-
-import { StyledCalculator } from 'containers/calculator/components';
-
-const calculator = new Calculator();
-
-const digits = '0123456789.';
-const operators = '+-x/%=';
-const signs = ['C', 'CE', '±', '←', '(', ')'];
+import { StyledCalculator } from 'containers/calculator/styled';
+import { digits, operators, signs } from 'constants/buttons';
+import { calculating, checkOperatorDuplicate } from 'utils/calculating';
 
 class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorState> {
   constructor(props: CalculatorCCProps) {
     super(props);
 
     this.state = {
-      previous: '',
-      current: '',
-      output: '0',
+      expression: '',
+      currentValue: '',
       operator: '',
-      sign: '',
-      total: false,
-      displayHistory: '',
+      result: '',
+      isFinish: false,
+      output: '0',
       visible: true,
     };
   }
 
   componentDidUpdate() {
-    const { current, previous, sign, displayHistory, total } = this.state;
+    const { currentValue, expression, result, isFinish } = this.state;
     const { historyList, setHistory: setHistoryLS } = this.props;
 
-    if (sign === 'CE' || sign === '←') {
-      this.setState({ output: current || '0' });
-    } else {
-      this.setState({ output: current || previous || '0' });
+    this.setState({ output: currentValue || result || '0' });
+
+    if (expression) {
+      const currentResult = calculating(expression);
+      this.setState({ result: currentResult || currentValue });
     }
 
-    if (displayHistory.includes(')')) {
-      const result = calculatingBrackets(displayHistory);
-      if (result) {
-        this.setState({
-          previous: result.toString(),
-        });
+    if (isFinish) {
+      if (expression) {
+        setHistoryLS({ id: historyList.length, value: expression });
       }
-    }
-    if (total) {
-      if (displayHistory) {
-        setHistoryLS({ id: historyList.length, value: displayHistory });
-      }
-      this.setState({ displayHistory: '' });
+      localStorage.setItem('history', JSON.stringify(historyList));
+      this.setState({ expression: '' });
     }
   }
 
   render() {
-    const { current, previous, operator, total, output, displayHistory, visible } = this.state;
+    const { expression, currentValue, operator, result, isFinish, output, visible } = this.state;
     const { historyList } = this.props;
 
-    const numberClickHandler = (value: string) => {
-      if (current.includes('.') && value === '.') return;
-
-      if (total) {
-        this.setState({ previous: '' });
-      }
-      this.setState((state) => ({ current: state.current + value, sign: '', total: false }));
-    };
-
-    const operatorClickHandler = (value: string) => {
-      this.setState({ operator: value });
-
-      if (current === '') return;
-
-      if (previous !== '' && !displayHistory.includes('(')) {
-        const result = calculator.execute(operator, previous, current).toString();
-        this.setState({ previous: result, current: '' });
-      } else {
-        this.setState({ previous: current, current: '' });
-      }
-    };
-
     const resetHandler = () => {
-      this.setState({ previous: '', current: '', operator: '', sign: '', displayHistory: '' });
+      this.setState({
+        currentValue: '',
+        expression: '',
+        operator: '',
+        result: '',
+        isFinish: false,
+      });
     };
 
-    const cleanEntryHandler = () => this.setState({ current: '', sign: 'CE' });
+    const cleanEntryHandler = () => this.setState({ currentValue: '', result: '' });
 
-    const invertHandler = () => this.setState({ current: String(+current * -1) });
+    const invertHandler = () => this.setState({ currentValue: String(+currentValue * -1) });
 
-    const backHandler = () => {
-      this.setState({ current: current.slice(0, current.length - 1), sign: '<' });
-    };
+    const backHandler = () =>
+      this.setState({ currentValue: currentValue.slice(0, currentValue.length - 1) });
 
-    const rightBracket = () => this.setState({ current: '' });
-
-    const signClickHandler = (value: string) => {
-      switch (value) {
-        case 'C':
-          return resetHandler();
-
-        case 'CE':
-          return cleanEntryHandler();
-
-        case '←':
-          return backHandler();
-
-        case '±':
-          return invertHandler();
-
-        case ')':
-          return rightBracket();
-
-        default:
-          return '';
-      }
+    const signClickHandler: SignClickHandler = {
+      C: resetHandler,
+      CE: cleanEntryHandler,
+      '←': backHandler,
+      '±': invertHandler,
     };
 
     const buttonClickHandler = (value: string) => {
+      if (operator === value) return;
+
+      const btnValue = operators.includes(value) ? ` ${value} ` : value;
+      const checkedExpression = checkOperatorDuplicate(operator, value, expression);
+
+      if (signs.includes(value)) {
+        const operation = signClickHandler[value];
+        operation();
+      }
+
       if (digits.includes(value)) {
-        numberClickHandler(value);
+        this.setState((state) => ({
+          isFinish: false,
+          currentValue: state.currentValue + btnValue,
+          operator: '',
+        }));
       }
 
       if (operators.includes(value)) {
-        this.setState({ total: value === '=' });
-        operatorClickHandler(value);
-      }
-
-      if (signs.includes(value)) {
-        signClickHandler(value);
-      }
-
-      if (operators.includes(value) || value === '(' || value === ')') {
-        const number = total ? previous : current;
+        let newExpression = value === '=' ? currentValue : currentValue + btnValue;
+        if (isFinish) {
+          newExpression = result + btnValue;
+        }
         this.setState((state) => ({
-          displayHistory: `${state.displayHistory} ${number} ${value === '=' ? '' : value}`,
+          currentValue: '',
+          operator: value,
+          expression: checkedExpression || state.expression + newExpression,
         }));
+      }
+      if (value !== '=') {
+        this.setState({ isFinish: false });
+      } else {
+        this.setState({ isFinish: true, operator: '' });
       }
     };
 
@@ -153,8 +125,8 @@ class CalculatorCC extends React.PureComponent<CalculatorCCProps, CalculatorStat
     return (
       <StyledCalculator>
         <div className="main-block">
-          <DisplayCC output={output} displayHistory={displayHistory} />
-          <KeyPadCC callback={buttonClickHandler} />
+          <DisplayCC output={output} displayHistory={expression} />
+          <KeyPadCC onButtonClick={buttonClickHandler} />
         </div>
         <HistoryCC historyList={historyList} visible={visible} />
         <ControlPanelCC visible={visible} toggleHistory={toggleHistory} />

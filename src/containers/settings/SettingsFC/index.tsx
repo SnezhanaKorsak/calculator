@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useAppDispatch } from 'utils/hooks';
+import { useAppDispatch } from 'hooks/hooks';
 import { clearAllHistory } from 'reducers/historyReducer';
 
 import SwitchThemeFC from 'components/switchTheme/SwitchThemeFC';
 
-import { ButtonClear, StyledSettings } from 'containers/settings/components';
+import { ButtonClear, StyledSettings } from 'containers/settings/styled';
 
-function SettingsFC() {
+const SettingsFC = () => {
   const dispatch = useAppDispatch();
 
   const clearHistoryHandler = () => {
@@ -21,6 +21,6 @@ function SettingsFC() {
       <ButtonClear onClick={clearHistoryHandler}>Clear All History</ButtonClear>
     </StyledSettings>
   );
-}
+};
 
 export default SettingsFC;

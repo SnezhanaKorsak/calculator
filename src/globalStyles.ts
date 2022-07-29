@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import theme from './theme';
+import commonTheme from './theme';
 
 export default createGlobalStyle`
   * {
@@ -8,6 +8,6 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
 
-    font-family: ${theme.font};
+    font-family: ${commonTheme.font};
   }
 `;

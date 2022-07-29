@@ -1,6 +1,6 @@
 import { Calculator } from 'utils/Calculator';
 
-const sign = '+-x/';
+const sign = '+-x/%';
 
 const isPriority = (prevOperator: string, nextOperator: string) => {
   if (nextOperator === '(' || nextOperator === ')') {
@@ -9,7 +9,8 @@ const isPriority = (prevOperator: string, nextOperator: string) => {
   return !((prevOperator === 'x' || prevOperator === '/') && (nextOperator === '+' || nextOperator === '-'));
 };
 
-export const calculatingBrackets = (expression: string) => {
+export const calculating = (expression: string) => {
+  // debugger;
   const arr = expression.split(' ');
   const values: string[] = [];
   const operators: string[] = [];
@@ -47,6 +48,9 @@ export const calculatingBrackets = (expression: string) => {
       }
     }
   }
+  if (values.length <= operators.length) {
+    operators.pop();
+  }
 
   while (operators.length) {
     const operator = operators.pop();
@@ -59,4 +63,16 @@ export const calculatingBrackets = (expression: string) => {
   }
 
   return values.pop();
+};
+
+export const checkOperatorDuplicate = (prevOperator: string, nextOperator: string, expression: string) => {
+  let checkedExpression = '';
+
+  if (nextOperator === '(' || nextOperator === ')' || prevOperator === ')') return checkedExpression;
+
+  if (prevOperator && prevOperator !== nextOperator && !parseInt(nextOperator, 10)) {
+    const searchValue = expression.trim().slice(-1);
+    checkedExpression = expression.replace(searchValue, nextOperator);
+  }
+  return checkedExpression;
 };

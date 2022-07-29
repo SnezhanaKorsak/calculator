@@ -6,16 +6,16 @@ import { buttons } from 'constants/buttons';
 
 import { KeyPadProps } from 'components/keyPad/types';
 
-import { StyledKeyPad } from 'components/keyPad/components';
+import { StyledKeyPad } from 'components/keyPad/styled';
 
 class KeyPadCC extends React.PureComponent<KeyPadProps> {
   render(): React.ReactNode {
-    const { callback } = this.props;
+    const { onButtonClick } = this.props;
 
     return (
       <StyledKeyPad>
         {buttons.map(({ id, className, value }) => (
-          <ButtonCC key={id} className={className} value={value} callback={callback} />
+          <ButtonCC key={id} className={className} value={value} onButtonClick={onButtonClick} />
         ))}
       </StyledKeyPad>
     );

@@ -2,20 +2,16 @@ import React from 'react';
 
 import { ButtonProps } from 'components/button/types';
 
-import { ButtonNull, ButtonResult, StyledButton } from 'components/button/components';
+import { StyledButton } from 'components/button/styled';
 
-function ButtonFC({ className, value, callback }: ButtonProps) {
-  const clickHandler = () => {
-    callback(value);
-  };
+const ButtonFC: React.FC<ButtonProps> = ({ className, value, onButtonClick }) => {
+  const buttonClickHandler = () => onButtonClick(value);
 
   return (
-    <>
-      {className === '' && <StyledButton onClick={clickHandler}>{value}</StyledButton>}
-      {className === 'null' && <ButtonNull onClick={clickHandler}>{value}</ButtonNull>}
-      {className === 'result' && <ButtonResult onClick={clickHandler}>{value}</ButtonResult>}
-    </>
+    <StyledButton className={className} onClick={buttonClickHandler}>
+      {value}
+    </StyledButton>
   );
-}
+};
 
 export default ButtonFC;

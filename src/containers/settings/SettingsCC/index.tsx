@@ -7,7 +7,7 @@ import SwitchThemeCC from 'components/switchTheme/SwitchThemeCC';
 
 import { SettingsCCProps } from 'containers/settings/types';
 
-import { ButtonClear, StyledSettings } from 'containers/settings/components';
+import { ButtonClear, StyledSettings } from 'containers/settings/styled';
 
 class SettingsCC extends React.PureComponent<SettingsCCProps> {
   render(): React.ReactNode {

@@ -2,7 +2,7 @@ import React, { ErrorInfo } from 'react';
 
 import { ErrorBoundaryProps, State } from 'components/ErrorBoundary/types';
 
-import { StyledErrorMessage } from 'components/ErrorBoundary/components';
+import { StyledErrorMessage } from 'components/ErrorBoundary/styled';
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
   constructor(props: ErrorBoundaryProps) {

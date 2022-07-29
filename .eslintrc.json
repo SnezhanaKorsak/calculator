@@ -72,8 +72,16 @@
       }
     ],
     "react/jsx-fragments": [1, "element"],
-    "react/function-component-definition": [2, {"namedComponents": "function-declaration"}],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-empty-function": "off"
   },
   "settings": {
     "import/resolver": {

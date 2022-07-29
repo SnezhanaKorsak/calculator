@@ -2,7 +2,7 @@ import React from 'react';
 
 import { HistoryProps } from 'components/history/types';
 
-import { StyledHistory, Title } from 'components/history/components';
+import { StyledHistory, Title } from 'components/history/styled';
 
 class HistoryCC extends React.PureComponent<HistoryProps> {
   render(): React.ReactNode {

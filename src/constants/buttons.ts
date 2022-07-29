@@ -23,3 +23,7 @@ export const buttons = [
   { id: 22, className: '', value: '.' },
   { id: 23, className: '', value: '+' },
 ];
+
+export const digits = '0123456789.';
+export const operators = '+-x/%()=';
+export const signs = ['C', 'CE', '±', '←'];

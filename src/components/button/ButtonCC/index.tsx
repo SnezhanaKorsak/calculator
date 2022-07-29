@@ -2,22 +2,18 @@ import React from 'react';
 
 import { ButtonProps } from 'components/button/types';
 
-import { ButtonNull, ButtonResult, StyledButton } from 'components/button/components';
+import { StyledButton } from 'components/button/styled';
 
 class ButtonCC extends React.PureComponent<ButtonProps> {
   render(): React.ReactNode {
-    const { className, value, callback } = this.props;
+    const { className, value, onButtonClick } = this.props;
 
-    const clickHandler = () => {
-      callback(value);
-    };
+    const buttonClickHandler = () => onButtonClick(value);
 
     return (
-      <>
-        {className === '' && <StyledButton onClick={clickHandler}>{value}</StyledButton>}
-        {className === 'null' && <ButtonNull onClick={clickHandler}>{value}</ButtonNull>}
-        {className === 'result' && <ButtonResult onClick={clickHandler}>{value}</ButtonResult>}
-      </>
+      <StyledButton className={className} onClick={buttonClickHandler}>
+        {value}
+      </StyledButton>
     );
   }
 }

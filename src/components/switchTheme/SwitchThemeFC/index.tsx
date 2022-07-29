@@ -1,11 +1,11 @@
 import React, { ChangeEvent } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'utils/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { changeTheme } from 'reducers/themeReducer';
 
-import { StyledSelect, SubTitle } from 'components/switchTheme/components';
+import { StyledSelect, SubTitle } from 'components/switchTheme/styled';
 
-function SwitchThemeFC() {
+const SwitchThemeFC = () => {
   const dispatch = useAppDispatch();
   const { currentTheme } = useAppSelector((state) => state.theme);
 
@@ -23,6 +23,6 @@ function SwitchThemeFC() {
       </StyledSelect>
     </>
   );
-}
+};
 
 export default SwitchThemeFC;
